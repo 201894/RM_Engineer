@@ -1,0 +1,54 @@
+/** @file gimbal_task.h
+ *  @version 4.0
+ *  @date June 2019
+ *
+ *  @brief gimbal control task
+ *
+ *
+ */
+ #ifndef __GIMBAL_TASK_H__
+#define __GIMBAL_TASK_H__
+
+#include "stm32f4xx_hal.h"
+
+#define pid_yaw_adjust               0
+#define pid_stir_adjust                 0
+#define pid_pit_adjust                  0
+#define pid_Rpit_adjust                0
+#define pid_bullet_adjust              0
+#define pid_fric_adjust                  0
+
+#define  fric_kp                                20.5f
+#define  fric_ki                                  0.05f
+#define  fric_kd                                 0.0f
+#define  fric_errILim                          3000
+#define  fric_maxOut                         15000
+
+#define  stir_out_kp                        16
+#define  stir_out_ki                           0
+#define  stir_out_kd                          0
+#define  stir_out_errILim                   1000
+#define  stir_out_maxOut                  1000
+#define  stir_in_kp                           40
+#define  stir_in_ki                             0.08
+#define  stir_in_kd                            0
+#define  stir_in_errILim                     3000
+#define  stir_in_maxOut                   10000
+
+#define  bullet_out_kp                        16
+#define  bullet_out_ki                           0
+#define  bullet_out_kd                          0
+#define  bullet_out_errILim                   1000
+#define  bullet_out_maxOut                  1000
+#define  bullet_in_kp                           40
+#define  bullet_in_ki                             0.08
+#define  bullet_in_kd                            0
+#define  bullet_in_errILim                     3000
+#define  bullet_in_maxOut                   10000
+
+
+void gimbal_param_init(void);
+void yaw_identity_handle(int identity_flag,int mode_flag);
+void pit_identity_handle(int identity_flag,int mode_flag);
+
+#endif
