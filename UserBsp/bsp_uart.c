@@ -20,6 +20,7 @@ uint8_t uart7_buff[50],uart6_buff[50],uart3_buff[50];
 /**
   * @brief   initialize uart device 
   */
+	
 void uart1_device_init(void)
 {
 	HAL_DMA_Start_IT(&hdma_usart1_rx,(uint32_t)Dbus_usart.Instance->DR,(uint32_t)dbus_buf,DBbus_BUFLEN);
@@ -28,6 +29,14 @@ void uart1_device_init(void)
 	HAL_UART_Receive_DMA(&huart1,dbus_buf,DBbus_BUFLEN);	
 }
 
+void USER_DMA_INIT(UART_HandleTypeDef *huart, DMA_HandleTypeDef *hdma, uint8_t *Buffer_Adress, uint8_t Buffer_Len)
+{
+	HAL_DMA_Start_IT(hdma,(uint32_t)huart->Instance->DR,(uint32_t)Buffer_Adress,Buffer_Len);
+	huart1.Instance->CR3 |= USART_CR3_DMAR;
+	__HAL_UART_ENABLE_IT(huart,UART_IT_IDLE);
+	HAL_UART_Receive_DMA(huart,Buffer_Adress,Buffer_Len);
+	__HAL_UART_ENABLE_IT(huart,UART_IT_ERR);
+}
 
 void uart6_device_init(void)
 {	

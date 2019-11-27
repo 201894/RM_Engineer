@@ -24,8 +24,8 @@
 void uart1_device_init(void);
 void uart7_device_init(void);
 void uart6_device_init(void);
-void computer_uart_init(void);
-void judgement_uart_init(void);
+
+void USER_DMA_INIT(UART_HandleTypeDef *huart, DMA_HandleTypeDef *hdma, uint8_t *Buffer_Adress, uint8_t Buffer_Len);
 
 void uart_receive_handler(UART_HandleTypeDef *huart);
 void 	UART_RX_IDLE_IRQ(UART_HandleTypeDef *huart);

@@ -124,6 +124,19 @@ void chassis_link_handle(void)
 	  mecanum_algorithm(chassis.vx,chassis.vy,chassis.vw,chassis.target);	
 }
 
+/**
+  * @brief  扭腰模式
+  * @param  扭腰幅度   扭腰速度  扭腰模式
+  * @retval void
+  * @attention  
+  */
+void Chassis_Corgi_Mode_Ctrl(int16_t Corgi_Angle, int16_t sRevolMax,uint8_t Corgi_Mode)
+{
+		static int Corgi_Direction = 0;
+		
+			
+	
+}
 void chassis_param_init(void)
 {
 	for(int i=0;i<6;i++)

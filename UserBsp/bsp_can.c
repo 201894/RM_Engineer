@@ -47,14 +47,17 @@ void HAL_CAN_RxFifo0MsgPendingCallback(CAN_HandleTypeDef* hcan)
 	    case CAN_3508_M2_ID:  
 	    case CAN_3508_M3_ID:  
 	    case CAN_3508_M4_ID:
-	    case CAN_3508_M5_ID:  
-	    case CAN_3508_M6_ID:  			
+	    case CAN_3508_M5_ID:  			
 	    {
 	       static uint8_t i;
          i = Can1Header.StdId - CAN_3508_M1_ID;			
-         moto_chassis[i].speed_rpm = (uint16_t)(RxData1[2] << 8 | RxData1[3]);			 
-         can_cnt[0]++;			
-	    }break;  	 
+         moto_chassis[i].speed_rpm = (uint16_t)(RxData1[2] << 8 | RxData1[3]);			 		
+	    }break;  	
+	    case CAN_3508_M6_ID:  
+			{
+				 encoder_data_handle(&moto_chassis[5],RxData1);
+				 moto_chassis[5].msg_cnt < 10 ? (moto_chassis[5].msg_cnt++ , moto_chassis[5].angle_offset = moto_chassis[5].total_angle): (NULL);
+			}break;				
 			case CAN_YAW_GYRO_ID:
 	    {
      	   gyro_data_handle(&data2bytes,&data4bytes,&gyro_yaw,RxData1);		  														
@@ -154,7 +157,6 @@ void send_chassis_cur(uint32_t id,int16_t iq1, int16_t iq2, int16_t iq3, int16_t
     HAL_CAN_AddTxMessage(&hcan1,&CAN_TxHeader,TxData,(uint32_t *)CAN_TX_MAILBOX0);
 }
 
-
 void send_chassis_ms(uint32_t id,uint8_t data[8])
 {
 	  CAN_TxHeader.StdId    = id;
@@ -171,6 +173,7 @@ void send_chassis_ms(uint32_t id,uint8_t data[8])
 	  TxData[7] = data[7];
     HAL_CAN_AddTxMessage(&hcan1,&CAN_TxHeader,TxData,(uint32_t *)CAN_TX_MAILBOX0);
 }
+
 void can_device_init(void)
 {
   //can1 &can2 use same filter config

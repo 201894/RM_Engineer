@@ -47,6 +47,8 @@ extern float power_ratio;
 extern float  chassis_speed;
 
 void mecanum_algorithm(float vx,float vy, float vw,int16_t speed[]);
+
+void Chassis_Corgi_Mode_Ctrl(int16_t Corgi_Angle, int16_t sRevolMax,uint8_t Corgi_Mode); //Å¤ÑüÄ£Ê½
 void chassis_param_init(void);
 void gyro_algorithm(void);
 void chassis_link_handle(void);

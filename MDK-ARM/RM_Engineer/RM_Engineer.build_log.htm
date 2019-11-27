@@ -22,11 +22,40 @@ Dialog DLL:      TCM.DLL V1.14.4.0
  
 <h2>Project:</h2>
 E:\RM2020\RM_ENGINEER\RM_Engineer\MDK-ARM\RM_Engineer.uvprojx
-Project File Date:  11/21/2019
+Project File Date:  11/25/2019
 
 <h2>Output:</h2>
 Build target 'RM_Engineer'
-"RM_Engineer\RM_Engineer.axf" - 0 Error(s), 0 Warning(s).
+compiling chassis_task.c...
+..\RmLib\ramp.h(43): warning:  #1-D: last line of file ends without a newline
+                                                
+..\MainTask\chassis_task.c(78): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+                        speed[4] =  1.3*Buffer[4];
+..\MainTask\chassis_task.c(135): warning:  #177-D: variable "Corgi_Direction" was declared but never referenced
+                static int Corgi_Direction = 0;
+..\MainTask\chassis_task.c: 3 warnings, 0 errors
+compiling bsp_can.c...
+..\UserBsp\bsp_can.c(39): warning:  #177-D: variable "RxData2" was declared but never referenced
+    uint8_t RxData1[8],RxData2[8];
+..\UserBsp\bsp_can.c(40): warning:  #177-D: variable "Can2Header" was declared but never referenced
+    CAN_RxHeaderTypeDef Can1Header,Can2Header;
+..\UserBsp\bsp_can.c: 2 warnings, 0 errors
+compiling bsp_uart.c...
+compiling DR16_decode.c...
+..\DeCode\DR16_decode.c(31): warning:  #223-D: function "abs" declared implicitly
+                rc->ch1 =       abs(rc->ch1) > 10 ? rc->ch1 : 0;
+..\DeCode\DR16_decode.c: 1 warning, 0 errors
+compiling ano_dt.c...
+..\RmLib\ano_dt.h(44): warning:  #1-D: last line of file ends without a newline
+  #endif
+..\RmLib\ano_dt.c: 1 warning, 0 errors
+compiling main.c...
+compiling freertos.c...
+compiling stm32f4xx_it.c...
+linking...
+Program Size: Code=20304 RO-data=576 RW-data=188 ZI-data=19980  
+FromELF: creating hex file...
+"RM_Engineer\RM_Engineer.axf" - 0 Error(s), 7 Warning(s).
 
 <h2>Software Packages used:</h2>
 
